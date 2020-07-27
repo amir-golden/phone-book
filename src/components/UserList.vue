@@ -1,8 +1,14 @@
 <template>
   <div class="all-users">
-    <input v-model="searchUser" class="user-search-input" placeholder="Введите имя..." />
+    <input
+      v-model="searchUser"
+      class="user-search-input"
+      placeholder="Введите имя..."
+    />
     <div v-for="user in userList" :key="user.id" class="user">
-      <span class="username" @click="openUserCard(user.id)">{{ user.name }}</span>
+      <span class="username" @click="openUserCard(user.id)">{{
+        user.name
+      }}</span>
       <button
         v-if="!secondUserList.some((item) => item.id === user.id)"
         type="button"
@@ -27,23 +33,23 @@ export default {
   components: {},
   data() {
     return {
-      searchUser: ""
+      searchUser: "",
     };
   },
   computed: {
-    ...mapState(["userList", "secondUserList"])
+    ...mapState(["userList", "secondUserList"]),
   },
   watch: {
     searchUser(newValue) {
       this.getUserList({ params: { searchUser: newValue } });
-    }
+    },
   },
   methods: {
     ...mapMutations(["addToSecondUserList", "removeFromSecondUserList"]),
     ...mapActions(["getUserList"]),
     openUserCard(userId) {
       this.$router.push({ name: "UserCard", params: { id: userId } });
-    }
-  }
+    },
+  },
 };
 </script>

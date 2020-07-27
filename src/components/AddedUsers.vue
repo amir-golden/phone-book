@@ -1,6 +1,10 @@
 <template>
   <div class="added-users">
-    <input v-model="searchAddedUser" class="user-search-input" placeholder="Введите имя..." />
+    <input
+      v-model="searchAddedUser"
+      class="user-search-input"
+      placeholder="Введите имя..."
+    />
     <div v-for="user in filteredSecondList" :key="user.id" class="user">
       {{ user.name }}
       <button
@@ -22,23 +26,23 @@ export default {
   mixins: [nprogressMixin],
   data() {
     return {
-      searchAddedUser: ""
+      searchAddedUser: "",
     };
   },
   computed: {
     ...mapState(["secondUserList"]),
     filteredSecondList() {
-      return this.secondUserList.filter(item => {
+      return this.secondUserList.filter((item) => {
         return (
           item.name
             .toLowerCase()
             .indexOf(this.searchAddedUser.toLowerCase()) !== -1
         );
       });
-    }
+    },
   },
   methods: {
-    ...mapMutations(["removeFromSecondUserList"])
-  }
+    ...mapMutations(["removeFromSecondUserList"]),
+  },
 };
 </script>

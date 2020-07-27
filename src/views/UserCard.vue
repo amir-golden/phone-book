@@ -1,8 +1,13 @@
 <template>
   <div class="row">
     <div class="column left-column blue">
-      <button class="main-page-link" type="button" @click="goToMainPage">На главную</button>
-      <div v-if="user !== null && typeof user !== 'undefined'" class="user-card">
+      <button class="main-page-link" type="button" @click="goToMainPage">
+        На главную
+      </button>
+      <div
+        v-if="user !== null && typeof user !== 'undefined'"
+        class="user-card"
+      >
         <h3>{{ user.name }}</h3>
         <p class="phone-number">Номер телефона: {{ user.phone }}</p>
         <p class="address">Адрес: {{ user.address }}</p>
@@ -37,21 +42,21 @@ export default {
   mixins: [nprogressMixin],
   data() {
     return {
-      user: null
+      user: null,
     };
   },
   computed: {
-    ...mapState(["userList", "secondUserList"])
+    ...mapState(["userList", "secondUserList"]),
   },
   mounted() {
     const userId = parseInt(this.$route.params.id);
-    this.user = this.userList.find(item => item.id === userId);
+    this.user = this.userList.find((item) => item.id === userId);
   },
   methods: {
     ...mapMutations(["addToSecondUserList", "removeFromSecondUserList"]),
     goToMainPage() {
       this.$router.push({ name: "Home" });
-    }
-  }
+    },
+  },
 };
 </script>

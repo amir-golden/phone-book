@@ -18,8 +18,8 @@ export default {
   name: "Home",
   components: {
     UserList,
-    AddedUsers
+    AddedUsers,
   },
-  mixins: [nprogressMixin]
+  mixins: [nprogressMixin],
 };
 </script>
